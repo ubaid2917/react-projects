@@ -46,7 +46,9 @@ function App() {
   return (
     <>
       <div className="container">
-        <h3>Counter App</h3>
+        <h3>Counter App</h3>  
+
+        <h1>{counter}</h1>
       </div>
 
 
