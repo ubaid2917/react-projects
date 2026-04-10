@@ -41,14 +41,38 @@ function App() {
 
 
   //*  =========== Counter App ===========    
-  const [counter, setCounter] = useState(0);
+  const [counter, setCounter] = useState(0);  
+  const [count, setCount] = useState(0);
+
+  function decrement(){
+      if(counter === 0) return false
+      setCounter(counter -1)
+  } 
+
+  function reset(){
+     if(counter === 0) return false  
+
+     if(counter > count){
+
+       setCount(counter)
+     }
+      setCounter(0)
+  }
 
   return (
     <>
       <div className="container">
-        <h3>Counter App</h3>  
+        <h3>Counter App</h3>
 
         <h1>{counter}</h1>
+
+        <div className="buttons">
+          <button onClick={() => setCounter(counter + 1)}>+</button>
+          <button onClick={decrement}>-</button>
+        </div>
+         
+         <button onClick={reset}>Reset</button> 
+         <h4>Your Last Count Was: {count}</h4>
       </div>
 
 
