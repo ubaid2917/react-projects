@@ -19,17 +19,19 @@ const Main = (props) => {
           description="Build powerful APIs using Node.js and MySQL."
         />
 
-         <Card
-          image="https://picsum.photos/400/300"
-          title="Web Development"
-          description="Learn modern web development using React and Tailwind CSS."
-        />
-
+        
         <Card
           image="https://picsum.photos/402/300"
           title="Full Stack"
           description="Become a complete full stack developer."
         />
+
+         <Card
+          image="https://picsum.photos/403/300"
+          title="Web Development"
+          description="Learn modern web development using React and Tailwind CSS."
+        />
+
 
        
       </div>

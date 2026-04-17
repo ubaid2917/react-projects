@@ -11,7 +11,7 @@ const App = () => {
     <Main name="Ubaid Naeem" /> 
     {/* <Card name='ubaid' age="20"/> */}
     {/* <Card /> */}
-    <Footer name="ali" />
+    <Footer name="Ubaid Naeem" />
    </>
   )
 }
