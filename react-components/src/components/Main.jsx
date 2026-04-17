@@ -6,7 +6,7 @@ const Main = (props) => {
     <>
       <h1 className='text-3xl font-bold text-center mt-5'>Welcome {props.name}</h1>
 
-      <div className='flex flex-wrap gap-6'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6 justify-items-center'>
         <Card
           image="https://picsum.photos/400/300"
           title="Web Development"
