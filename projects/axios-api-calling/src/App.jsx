@@ -5,19 +5,19 @@ import axios from 'axios'
 const App = () => {
 
   const [data, setData] = useState([])   
-  async function fetchUserData() {
+ 
+  useEffect(() => {
+    const  fetchUserData = async()=> {
     try {
       const response = await axios.get('https://jsonplaceholder.typicode.com/users')
       console.log('response', response)
       setData(response.data)
     } catch (error) {
       console.log(error)
-    }
+    } 
   }
-
-  useEffect(() => {
     fetchUserData()
-    console.log('data', data)
+  
   }, [])
 
 
