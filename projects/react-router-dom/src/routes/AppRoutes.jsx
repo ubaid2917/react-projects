@@ -5,8 +5,11 @@ import Product from '../pages/Product'
 import Gallery from '../pages/Gallery'
 import Contact from '../pages/Contact'
 import Home from '../pages/Home'
+import Header from '../Components/Header'
 const AppRoutes = () => {
-    return (
+    return ( 
+        <>
+        <Header/>
         <Routes>
             <Route path="/about" element={<About />} />
 
@@ -19,6 +22,7 @@ const AppRoutes = () => {
             <Route path='/' element={<Home/>} />
 
         </Routes>
+        </>
     )
 }
 
