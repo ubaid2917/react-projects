@@ -3,8 +3,8 @@ import Navbar from '../Components/Navbar'
 import { useCart } from '../Context/CartContext'
 
 const Cart = () => {
-    const {cart} = useCart()
-    const totalPrice = cart.reduce((total, item) => total + item.price, 0)
+    const {cart, removeFromCart} = useCart()
+    const totalPrice = cart.reduce((total, item) => total + item.price * (item.quantity || 1), 0)
 
   return (
     <>
@@ -37,9 +37,13 @@ const Cart = () => {
                       <div>
                         <h3 className='font-semibold text-gray-900'>{item.name}</h3>
                         <p className='mt-1 max-w-xl text-sm text-gray-500'>{item.description}</p>
+                        <p className='mt-1 text-sm text-gray-600'>Quantity: {item.quantity || 1}</p>
                       </div>
 
                       <p className='shrink-0 text-base font-semibold text-green-600'>${item.price.toFixed(2)}</p>
+                      <button onClick={() => removeFromCart(item.id)}
+                        className='shrink-0 rounded-md bg-red-500 px-3 py-1 text-sm text-white hover:bg-red-600'
+                        >Remove</button>
                     </div>
                   </div>
                 ))}
