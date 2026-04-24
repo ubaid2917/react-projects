@@ -1,5 +1,6 @@
 import React from 'react'
-import { useCart } from '../Context/CartContext'
+import { useCart } from '../Context/CartContext' 
+import Navbar from './Navbar'
 
 
 const Card = () => { 
@@ -113,8 +114,11 @@ const Card = () => {
 
 const { addToCart } = useCart()
 
-  return (
-    <div className='px-4 py-6'>
+  return ( 
+     
+  <> 
+  <Navbar/>
+   <div className='px-4 py-6'>
         <h2 className='text-2xl font-semibold mb-6'>Products</h2>
             <div className='grid gap-5 sm:grid-cols-2 lg:grid-cols-3'>
                 {products.map((product) => (
@@ -130,6 +134,7 @@ const { addToCart } = useCart()
                 ))}
             </div>
     </div>
+  </>   
   )
 }
 
