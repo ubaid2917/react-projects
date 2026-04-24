@@ -1,4 +1,6 @@
 import React from 'react'
+import { useCart } from '../Context/CartContext'
+
 
 const Card = () => { 
     const products = [
@@ -107,7 +109,9 @@ const Card = () => {
     price: 49.99,
     image: "https://picsum.photos/seed/fitnesstracker/300/300"
   }
-];
+];  
+
+const { addToCart } = useCart()
 
   return (
     <div className='px-4 py-6'>
@@ -120,7 +124,7 @@ const Card = () => {
                         <p className='text-sm text-gray-600 mb-3 line-clamp-2'>{product.description}</p>
                         <div className='flex items-center justify-between'>
                             <p className='text-green-600 font-semibold'>${product.price}</p>
-                            <button className='px-3 py-1.5 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition'>Add to Cart</button>
+                            <button onClick={() => addToCart(product)} className='px-3 py-1.5 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition'>Add to Cart</button>
                         </div>
                     </div>
                 ))}
