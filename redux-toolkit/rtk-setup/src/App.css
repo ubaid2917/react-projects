@@ -1,0 +1,37 @@
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+button:nth-of-type(1) {
+  background-color: #4CAF50;
+  color: white;
+}
+
+button:nth-of-type(1):hover {
+  background-color: #45a049;
+}
+
+button:nth-of-type(2) {
+  background-color: #f44336;
+  color: white;
+}
+
+button:nth-of-type(2):hover {
+  background-color: #da190b;
+}
