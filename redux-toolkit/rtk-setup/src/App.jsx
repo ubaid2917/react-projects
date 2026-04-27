@@ -1,7 +1,7 @@
 import React from 'react'
 import './App.css' 
 import {useDispatch, useSelector} from 'react-redux'
-import { decrement, increment } from './redux/features/counterSlice';
+import { decreaseByFive, decrement, increaseByFive, increment } from './redux/features/counterSlice';
 
 const App = () => { 
 
@@ -12,7 +12,11 @@ const App = () => {
     <h1>{count}</h1>
 
      <button  onClick={() => dispatch(increment()) }>Increment</button>
-     <button onClick={() => dispatch(decrement())}>Decrement</button>
+     <button onClick={() => dispatch(decrement())}>Decrement</button> 
+
+     <button onClick={() => dispatch(increaseByFive())}>Increment By 5</button>
+
+     <button onClick={() => dispatch(decreaseByFive())}>Decrease By 5</button>
     </>
      
   )
