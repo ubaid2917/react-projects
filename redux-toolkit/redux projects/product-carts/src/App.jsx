@@ -7,9 +7,8 @@ const App = () => {
     <div>
       <>
          <NavbarComponent/>
-            <h1 className='mt-2 px-2'>Product Carts</h1> 
+            <h1 className='mt-2 px-2'>Product Lis</h1> 
           <CardComponent/>
-     
      
       </>
     </div>

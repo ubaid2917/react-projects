@@ -1,6 +1,7 @@
 import React from 'react'
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { FaShoppingCart } from "react-icons/fa";
 
 
 const NavbarComponent = () => {
@@ -14,6 +15,9 @@ const NavbarComponent = () => {
             <Nav.Link href="#home" className="text-light">Home</Nav.Link>
             <Nav.Link href="#features" className="text-light">Features</Nav.Link>
             <Nav.Link href="#pricing" className="text-light">Pricing</Nav.Link>
+            <Nav.Link href="#cart" >
+              <FaShoppingCart size={25} />
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
