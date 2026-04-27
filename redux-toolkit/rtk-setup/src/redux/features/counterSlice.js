@@ -10,15 +10,14 @@ export const counterSlice = createSlice({
           state.value += 1
         },
         decrement: (state) => {
+           if(state.value === 0) return 
           state.value -=1
         },
         increaseByFive: (state) => {
             state.value +=5
         },
         decreaseByFive: (state) => {
-            if(state.value <= 0){
-                return
-            }
+            if(state.value <= 0) return
             state.value -=5
         }
     }
