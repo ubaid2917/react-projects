@@ -3,10 +3,13 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { FaShoppingCart } from "react-icons/fa";
 import Badge from 'react-bootstrap/Badge';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 
 const NavbarComponent = () => {
+  const dispatch = useDispatch(); 
+   let cartItemsCount = useSelector(state => state.cart.items.length);
   return (
     <>
       <Navbar bg="dark" data-bs-theme="dark" expand="lg" className="px-3 py-3 d-flex justify-content-between">
@@ -26,7 +29,8 @@ const NavbarComponent = () => {
                 padding: '2px 6px',
                 borderRadius: '50%'
               }}>
-                9
+
+                {cartItemsCount}
               </Badge>
             </Nav.Link>
           </Nav>

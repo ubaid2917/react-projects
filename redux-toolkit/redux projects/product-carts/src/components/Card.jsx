@@ -1,5 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../redux/features/addToCart';
 
 
 const products = [
@@ -76,6 +78,8 @@ const products = [
 ];
 
 const CardComponent = () => {
+     const dispatch = useDispatch();
+
     return (
         <div className="d-flex flex-wrap justify-content-center">
             {products.map(product => (
@@ -90,7 +94,7 @@ const CardComponent = () => {
                          <div className='d-flex justify-content-between align-items-center'>
                             <h5>${product.price}</h5> 
                          <Button variant="primary"
-                          onClick={() => alert("clicked")}
+                          onClick={() => dispatch(addToCart(product))}
                          >Add to Cart </Button>
                          </div>
                         
