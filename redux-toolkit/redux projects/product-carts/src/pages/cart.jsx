@@ -1,6 +1,7 @@
 import './cart.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeFromCart } from '../redux/features/addToCart';
+import { toast } from 'react-toastify';
 
 const Cart = () => {  
     const items = useSelector(state => state.cart.items);
@@ -50,7 +51,10 @@ const Cart = () => {
                                                 <span className="item-quantity">Qty: {item.quantity}</span>
                                                 <button 
                                                     className="remove-btn" 
-                                                    onClick={() => dispatch(removeFromCart(item.id))}
+                                                    onClick={() =>{ dispatch(removeFromCart(item.id))
+                                                     toast.info("Product Removed From Cart")
+                                                    }
+                                                    }
                                                     title="Remove item"
                                                 >
                                                     🗑️
