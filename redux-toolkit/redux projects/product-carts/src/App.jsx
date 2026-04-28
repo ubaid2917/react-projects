@@ -1,18 +1,16 @@
 import React from 'react'
 import NavbarComponent from './components/Navbar'
 import CardComponent from './components/Card'
-
+import AppRoutes from './routes/AppRoutes'
 const App = () => {
   return (
     <div>
-      <>
-         <NavbarComponent/>
-            <h1 className='mt-2 px-2'>Product Lis</h1> 
-          <CardComponent/>
-     
-      </>
+      <NavbarComponent />
+      <AppRoutes/>
     </div>
   )
 }
+
+
 
 export default App
