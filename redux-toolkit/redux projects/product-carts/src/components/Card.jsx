@@ -1,6 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
+
 const products = [
   {
     id: 1,
@@ -88,7 +89,9 @@ const CardComponent = () => {
                          
                          <div className='d-flex justify-content-between align-items-center'>
                             <h5>${product.price}</h5> 
-                         <Button variant="primary">Add to Cart</Button>
+                         <Button variant="primary"
+                          onClick={() => alert("clicked")}
+                         >Add to Cart </Button>
                          </div>
                         
                     </Card.Body>
