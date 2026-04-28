@@ -10,6 +10,14 @@ const Cart = () => {
     const items = useSelector(state => state.cart.items);
     const dispatch = useDispatch();
     const totalPrice = items.reduce((total, item) => total + (item.price * item.quantity), 0).toFixed(2)
+
+    const handleIncreaseQty = (item) => {
+        if (item.quantity >= 5) {
+            toast.warning("Maximum quantity reached for this product");
+            return;
+        }
+        dispatch(increaseQty(item.id))
+    }
     return (
         <div className="cart-page">
 
@@ -36,7 +44,6 @@ const Cart = () => {
                             </div>
                         )
                     }
-
                     {
                         items.length > 0 && (
                             <div className="cart-items-list">
@@ -54,25 +61,28 @@ const Cart = () => {
                                                 <span className="item-quantity">Qty: {item.quantity}</span>
                                                 <div className=''>
                                                     <button className='btn btn-info btn-sm'
-                                                    onClick={() => dispatch(increaseQty(item.id))}
+                                                        onClick={() =>
+                                                            handleIncreaseQty(item)
+                                                            // dispatch(increaseQty(item.id))
+                                                        }
                                                     ><IoMdAdd /></button> &nbsp;
 
                                                     <button className='btn btn-dark btn-sm'
-                                                     onClick={() => dispatch(decreaseQty(item.id))}
+                                                        onClick={() => dispatch(decreaseQty(item.id))}
                                                     ><TiMinus /></button>
-                                                    
+
                                                 </div>
                                                 <button
-                                                        className=" btn btn-danger btn-sm text-white"
-                                                        onClick={() => {
-                                                            dispatch(removeFromCart(item.id))
-                                                            toast.info("Product Removed From Cart")
-                                                        }
-                                                        }
-                                                        title="Remove item"
-                                                    >
-                                                       <FaRegTrashAlt />
-                                                    </button>
+                                                    className=" btn btn-danger btn-sm text-white"
+                                                    onClick={() => {
+                                                        dispatch(removeFromCart(item.id))
+                                                        toast.info("Product Removed From Cart")
+                                                    }
+                                                    }
+                                                    title="Remove item"
+                                                >
+                                                    <FaRegTrashAlt />
+                                                </button>
 
                                             </div>
                                         </div>

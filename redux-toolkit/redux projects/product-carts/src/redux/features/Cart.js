@@ -24,10 +24,7 @@ export const cartSlice = createSlice({
             const itemId = action.payload;
             const existingItem = state.items.find(item => item.id === itemId);
             if (existingItem) {
-                 if(existingItem.quantity >=5){
-                    toast.error("Maximum quantity reached for this item.");
-                    return;
-                 }
+                
                 existingItem.quantity += 1;
             }
          }, 
