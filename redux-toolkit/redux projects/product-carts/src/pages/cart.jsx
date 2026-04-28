@@ -1,6 +1,11 @@
 import './cart.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { removeFromCart } from '../redux/features/addToCart';
 
-const Cart = () => {
+const Cart = () => {  
+    const items = useSelector(state => state.cart.items);
+    const dispatch = useDispatch();
+    const totalPrice = items.reduce((total, item) => total + (item.price * item.quantity), 0).toFixed(2)
     return (
         <div className="cart-page">
 
@@ -16,13 +21,48 @@ const Cart = () => {
                 <section className="cart-items-panel">
                     <div className="panel-header">
                         <h2>Cart Items</h2>
-                        <span>0 items</span>
+                        <span>{items.length} items</span>
                     </div>
 
-                    <div className="empty-state">
-                        <p>Your cart is empty.</p>
-                        <small>Placeholder layout only; cart item rendering is not implemented.</small>
-                    </div>
+                    {
+                        items.length === 0 && (
+                            <div className="empty-state">
+                                <p>Your cart is empty.</p>
+                                <small>Placeholder layout only; cart item rendering is not implemented.</small>
+                            </div>
+                        )
+                    }
+
+                    {
+                        items.length > 0 && (
+                            <div className="cart-items-list">
+                                {items.map(item => (
+                                    <div key={item.id} className="cart-item-card">
+                                        <div 
+                                            className="item-image" 
+                                            style={{ backgroundImage: `url(${item.image})` }}
+                                        />
+                                        <div className="item-details">
+                                            <h3>{item.title}</h3>
+                                            <p>{item.description}</p>
+                                            <div className="item-meta">
+                                                <span className="item-price">${item.price}</span>
+                                                <span className="item-quantity">Qty: {item.quantity}</span>
+                                                <button 
+                                                    className="remove-btn" 
+                                                    onClick={() => dispatch(removeFromCart(item.id))}
+                                                    title="Remove item"
+                                                >
+                                                    🗑️
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        )
+                    }
+
                 </section>
 
                 <aside className="cart-summary-panel">
@@ -30,7 +70,7 @@ const Cart = () => {
                         <h2>Order Summary</h2>
                         <div className="summary-row">
                             <span>Subtotal</span>
-                            <strong>$0.00</strong>
+                            <strong>${totalPrice}</strong>
                         </div>
                         <div className="summary-row">
                             <span>Shipping</span>
@@ -38,7 +78,7 @@ const Cart = () => {
                         </div>
                         <div className="summary-row total-row">
                             <span>Total</span>
-                            <strong>$0.00</strong>
+                            <strong>${totalPrice}</strong>
                         </div>
                         <button className="summary-button" type="button">Proceed to Checkout</button>
                     </div>

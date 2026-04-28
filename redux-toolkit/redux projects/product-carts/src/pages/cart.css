@@ -6,7 +6,7 @@
 }
 
 .cart-banner {
-  background: linear-gradient(135deg, #4f46e5 0%, #2563eb 100%);
+  background: #212529;
   color: white;
   border-radius: 24px;
   padding: 28px 30px;
@@ -135,6 +135,21 @@
   font-weight: 600;
 }
 
+.remove-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.remove-btn:hover {
+  background: #fee2e2;
+  transform: scale(1.1);
+}
+
 .summary-card h2 {
   margin: 0 0 18px;
   font-size: 1.4rem;
@@ -158,7 +173,7 @@
   width: 100%;
   margin-top: 26px;
   padding: 14px 0;
-  background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
+  background: #212529;
   border: none;
   color: white;
   border-radius: 14px;
