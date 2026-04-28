@@ -1,9 +1,12 @@
 import './cart.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeFromCart } from '../redux/features/addToCart';
+import { removeFromCart, increaseQty, decreaseQty } from '../redux/features/Cart';
 import { toast } from 'react-toastify';
+import { FaRegTrashAlt } from "react-icons/fa";
+import { IoMdAdd } from "react-icons/io";
+import { TiMinus } from "react-icons/ti";
 
-const Cart = () => {  
+const Cart = () => {
     const items = useSelector(state => state.cart.items);
     const dispatch = useDispatch();
     const totalPrice = items.reduce((total, item) => total + (item.price * item.quantity), 0).toFixed(2)
@@ -39,8 +42,8 @@ const Cart = () => {
                             <div className="cart-items-list">
                                 {items.map(item => (
                                     <div key={item.id} className="cart-item-card">
-                                        <div 
-                                            className="item-image" 
+                                        <div
+                                            className="item-image"
                                             style={{ backgroundImage: `url(${item.image})` }}
                                         />
                                         <div className="item-details">
@@ -49,16 +52,28 @@ const Cart = () => {
                                             <div className="item-meta">
                                                 <span className="item-price">${item.price}</span>
                                                 <span className="item-quantity">Qty: {item.quantity}</span>
-                                                <button 
-                                                    className="remove-btn" 
-                                                    onClick={() =>{ dispatch(removeFromCart(item.id))
-                                                     toast.info("Product Removed From Cart")
-                                                    }
-                                                    }
-                                                    title="Remove item"
-                                                >
-                                                    🗑️
-                                                </button>
+                                                <div className=''>
+                                                    <button className='btn btn-info btn-sm'
+                                                    onClick={() => dispatch(increaseQty(item.id))}
+                                                    ><IoMdAdd /></button> &nbsp;
+
+                                                    <button className='btn btn-dark btn-sm'
+                                                     onClick={() => dispatch(decreaseQty(item.id))}
+                                                    ><TiMinus /></button>
+                                                    
+                                                </div>
+                                                <button
+                                                        className=" btn btn-danger btn-sm text-white"
+                                                        onClick={() => {
+                                                            dispatch(removeFromCart(item.id))
+                                                            toast.info("Product Removed From Cart")
+                                                        }
+                                                        }
+                                                        title="Remove item"
+                                                    >
+                                                       <FaRegTrashAlt />
+                                                    </button>
+
                                             </div>
                                         </div>
                                     </div>

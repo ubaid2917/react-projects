@@ -1,7 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart, removeFromCart } from '../redux/features/addToCart';
+import { addToCart, removeFromCart, increaseQty } from '../redux/features/Cart';
 import { toast } from 'react-toastify';
 
 
@@ -103,7 +103,7 @@ const CardComponent = () => {
                      isInCart(product.id) ? (
                       <button className='btn btn-info' onClick={() => {
                   dispatch(removeFromCart(product.id));
-                  toast.warning("Product Removed From Cart");
+                  toast.info("Product Removed From Cart");
                 }}>Remove From Cart</button>
                      ): (
                       <button className='btn btn-primary' onClick={() => {
