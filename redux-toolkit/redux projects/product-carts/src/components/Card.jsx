@@ -1,7 +1,8 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import { useDispatch } from 'react-redux';
-import { addToCart } from '../redux/features/addToCart';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart, removeFromCart } from '../redux/features/addToCart';
+import { toast } from 'react-toastify';
 
 
 
@@ -24,7 +25,7 @@ const products = [
     id: 3,
     name: "MacBook Air M2",
     price: 1199,
-   description: "Latest Apple smartphone with A15 Bionic chip and advanced camera system.",
+    description: "Latest Apple smartphone with A15 Bionic chip and advanced camera system.",
     image: "https://picsum.photos/id/3/300/200"
   },
   {
@@ -38,7 +39,7 @@ const products = [
     id: 5,
     name: "Sony Headphones",
     price: 199,
-   description: "Latest Apple smartphone with A15 Bionic chip and advanced camera system.",
+    description: "Latest Apple smartphone with A15 Bionic chip and advanced camera system.",
     image: "https://picsum.photos/id/5/300/200"
   },
   {
@@ -79,33 +80,48 @@ const products = [
 ];
 
 const CardComponent = () => {
-     const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const cartItems = useSelector(state => state.cart.items);
+  const isInCart = (id) => cartItems.some(item => item.id === id);
 
-    return (
-      <>
-        <div className="d-flex flex-wrap justify-content-center">
-            {products.map(product => (
-                <Card key={product.id} className='m-2' style={{ width: '18rem' }}>
-                    <Card.Img variant="top" src={product.image} />
-                    <Card.Body>
-                        <Card.Title>{product.name}</Card.Title>
-                        <Card.Text>
-                            {product.description}
-                        </Card.Text> 
-                         
-                         <div className='d-flex justify-content-between align-items-center'>
-                            <h5>${product.price}</h5> 
-                         <Button variant="primary"
-                          onClick={() => dispatch(addToCart(product))}
-                         >Add to Cart </Button>
-                         </div>
-                        
-                    </Card.Body>
-                </Card>
-            ))}
-        </div>
-      </>
-    )
+  return (
+    <>
+      <div className="d-flex flex-wrap justify-content-center">
+        {products.map(product => (
+          <Card key={product.id} className='m-2' style={{ width: '18rem' }}>
+            <Card.Img variant="top" src={product.image} />
+            <Card.Body>
+              <Card.Title>{product.name}</Card.Title>
+              <Card.Text>
+                {product.description}
+              </Card.Text>
+
+              <div className='d-flex justify-content-between align-items-center'>
+                <h5>${product.price}</h5>
+
+                  {
+                     isInCart(product.id) ? (
+                      <button className='btn btn-info' onClick={() => {
+                  dispatch(removeFromCart(product.id));
+                  toast.warning("Product Removed From Cart");
+                }}>Remove From Cart</button>
+                     ): (
+                      <button className='btn btn-primary' onClick={() => {
+                  dispatch(addToCart(product));
+                  toast.success("Item added to cart!");
+                }}>Add to Cart</button>
+                     )
+                    
+                  }
+                
+              </div>
+
+            </Card.Body>
+          </Card>
+        ))}
+      </div>
+    </>
+  )
 }
 
 export default CardComponent
