@@ -1,32 +1,52 @@
+import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 
+// ================ with react query ================
+const fetchProducts = async () => {
+  const response = await fetch("https://fakestoreapi.com/products");
+  const data = await response.json()
+  return data;
+}
+
 const Products = () => {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  
+  const { isLoading, error, data: products } = useQuery({
+    queryKey: ["products"],
+    queryFn: fetchProducts
+  })
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch("https://fakestoreapi.com/products");
-        
-        if (!response.ok) {
-          throw new Error('Failed to fetch products');
-        }
-        
-        const data = await response.json();
-        setProducts(data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+  // ================ with react query ================
+   
+  //  ======================== without react query ===================== //
 
-    fetchProducts();
-  }, []);
+  // const [products, setProducts] = useState([]);
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState(null);
 
-  if (loading) {
+  // useEffect(() => {
+  //   const fetchProducts = async () => {
+  //     try {
+  //       const response = await fetch("https://fakestoreapi.com/products");
+
+  //       if (!response.ok) {
+  //         throw new Error('Failed to fetch products');
+  //       }
+
+  //       const data = await response.json();
+  //       setProducts(data);
+  //     } catch (err) {
+  //       setError(err.message);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   fetchProducts();
+  // }, []);
+
+   //  ======================== without react query ===================== //
+
+  if (isLoading) {
     return (
       <div className="flex justify-center items-center h-64">
         <div className="text-lg">Loading products...</div>
@@ -37,7 +57,7 @@ const Products = () => {
   if (error) {
     return (
       <div className="flex justify-center items-center h-64">
-        <div className="text-lg text-red-600">Error: {error}</div>
+        <div className="text-lg text-red-600">Error: {error.message}</div>
       </div>
     );
   }
